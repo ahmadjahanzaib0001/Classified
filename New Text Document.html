@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mission Briefing</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #2f3e2f, #1f2a1f);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe UI", sans-serif;
+        color: #e6e6e6;
+    }
+
+    .card {
+        background: #1b1f1b;
+        border-radius: 20px;
+        padding: 30px;
+        width: 370px;
+        box-shadow: 0 0 40px rgba(0,0,0,0.7);
+        border: 2px solid #4a5d4a;
+        position: relative;
+    }
+
+    h1 {
+        color: #9acd32;
+        text-align: center;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+    }
+
+    .subtitle {
+        text-align: center;
+        font-size: 0.85em;
+        color: #b5c9b5;
+        margin-bottom: 18px;
+    }
+
+    /* 🔰 NEW INSIGNIA */
+    .badge {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+        background:
+            radial-gradient(circle at center, #2f3e2f 40%, #1b1f1b 41%);
+        border: 4px solid #9acd32;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 0 15px rgba(154,205,50,0.4);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .badge:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(154,205,50,0.7);
+    }
+
+    .badge span {
+        font-size: 3em;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .label {
+        font-size: 0.8em;
+        color: #9fb59f;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .amount {
+        font-size: 2.2em;
+        margin: 12px 0;
+        color: #e0ff9a;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .progress {
+        background: #333;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 8px;
+        margin: 15px 0;
+    }
+
+    .bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #6b8e23, #9acd32);
+        transition: width 0.4s;
+    }
+
+    .note {
+        font-size: 0.8em;
+        color: #bfcfbf;
+        margin-top: 12px;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    .time, .from {
+        font-size: 0.75em;
+        color: #8fa58f;
+        margin-top: 8px;
+        text-align: center;
+    }
+
+    .stamp {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        border: 1px dashed #6b8e23;
+        padding: 6px 10px;
+        font-size: 0.7em;
+        color: #9acd32;
+        transform: rotate(-8deg);
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <div class="stamp">CLASSIFIED</div>
+
+    <h1>MISSION BRIEFING</h1>
+    <div class="subtitle">Tap insignia to proceed</div>
+
+    <div class="badge" onclick="startMission()">
+        <span>🪖</span>
+    </div>
+
+    <div id="content" class="hidden">
+        <div class="label">Operative</div>
+        <div style="text-align:center;font-weight:600;">
+            Captain Arooj Tariq
+        </div>
+
+        <div class="progress">
+            <div id="bar" class="bar"></div>
+        </div>
+
+        <div class="amount">₹ 7 CRORE</div>
+
+        <div class="note">
+            Mission objective completed.<br>
+            Funds allocated for motivation, morale,
+            and future officer ambitions.
+        </div>
+
+        <div class="time">Time: 01:00 AM</div>
+        <div class="from">Issued by: Legend Ahmad</div>
+    </div>
+</div>
+
+<script>
+function startMission() {
+    document.querySelector(".subtitle").innerText = "Executing mission...";
+    document.getElementById("content").classList.remove("hidden");
+
+    let bar = document.getElementById("bar");
+    let width = 0;
+
+    let interval = setInterval(() => {
+        width += 25;
+        bar.style.width = width + "%";
+        if (width >= 100) {
+            clearInterval(interval);
+            document.querySelector(".subtitle").innerText = "Mission completed";
+        }
+    }, 400);
+}
+</script>
+
+</body>
+</html>
